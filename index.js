@@ -9,6 +9,8 @@ class Node {
   class Board{
       constructor(start = [], end = []){
           this.board = this.buildBoard();
+          this.start = start;
+          this.end = end;
       }
       
       buildBoard(){
@@ -21,6 +23,25 @@ class Node {
           }
           return board;
       }
+      
+      possibleMoves(row, column){
+          const moves = [[-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [1, -2], [-1, -2]]
+          const validMoves = []
+          for(let move in moves){
+              if( > )
+          }
+          return moves;
+      }
+      
+      createAdjList(){
+          for(let i = 0; i < 8; i++){
+              for(let j = 0; j < 8; j++){
+                  const move = this.possibleMoves(i, j)
+              }
+          }
+      }
+      
+      
   }
   
   
