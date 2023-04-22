@@ -1,3 +1,7 @@
+import { renderDom } from "./dom";
+
+renderDom();
+
 class Node {
     constructor(row, col) {
       this.row = row;
@@ -27,9 +31,7 @@ class Node {
       possibleMoves(row, column){
           const moves = [[-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [1, -2], [-1, -2]]
           const validMoves = []
-          for(let move in moves){
-              if( > )
-          }
+         
           return moves;
       }
       
