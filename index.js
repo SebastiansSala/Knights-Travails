@@ -57,32 +57,33 @@ class Board {
     }
   }
 
-  dfs(node) {
-    if (node === this.board[this.end[0]][this.end[1]]) {
-      this.path.unshift([node.row, node.col]);
-      return true;
-    }
-
-    this.visited.add(node);
-
-    for (const neighbor of node.adjList) {
-      if (!this.visited.has(neighbor)) {
-        if (this.dfs(neighbor)) {
-          this.path.unshift([node.row, node.col]);
-          return true;
+  bfs(startNode, endNode) {
+    const queue = [startNode];
+    while (queue.length > 0) {
+      const node = queue.shift();
+      for (const adjNode of node.adjList) {
+        if (!this.visited.has(adjNode)) {
+          this.visited.add(adjNode);
+          adjNode.parent = node;
+          queue.push(adjNode);
+          if (adjNode === endNode) return;
         }
       }
     }
-
-    return false;
   }
 
-  findPath() {
+  findShortestPath() {
     const startNode = this.board[this.start[0]][this.start[1]];
-    this.dfs(startNode);
+    const endNode = this.board[this.end[0]][this.end[1]];
+    this.bfs(startNode, endNode);
+    let node = endNode;
+    while (node !== startNode) {
+      this.path.unshift([node.row, node.col]);
+      node = node.parent;
+    }
+    this.path.unshift([startNode.row, startNode.col]);
     return this.path;
   }
 }
-
 const test = new Board([0, 0], [7, 7]);
 console.log(test.findPath());
